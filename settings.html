@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings - Elevate Trading</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+}
+
+.topbar{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+background:#111;
+border-bottom:1px solid rgba(255,215,0,.2);
+}
+
+.title{
+font-size:22px;
+font-weight:700;
+color:gold;
+}
+
+.container{
+max-width:500px;
+margin:30px auto;
+padding:20px;
+}
+
+.card{
+background:#111;
+border:1px solid rgba(255,215,0,.2);
+border-radius:20px;
+padding:25px;
+}
+
+.card h2{
+color:gold;
+margin-bottom:20px;
+}
+
+.label{
+color:#aaa;
+margin-bottom:8px;
+}
+
+.deviceBox{
+background:#000;
+border:1px solid rgba(255,215,0,.25);
+border-radius:12px;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+word-break:break-all;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+height:50px;
+border:none;
+border-radius:12px;
+background:gold;
+color:#000;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:gold;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<script>
+
+const token = sessionStorage.getItem("token");
+
+if(!token){
+
+    window.location.replace("index.html");
+
+    throw new Error("Not logged in");
+
+}
+
+</script>
+
+<script>
+
+const token=sessionStorage.getItem("token");
+
+if(!token){
+
+location.replace("index.html");
+
+return;
+
+}
+
+(async()=>{
+
+const token=sessionStorage.getItem("token");
+
+if(!token){
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+try{
+
+const response=await fetch("/api/verify",{
+
+headers:{
+
+Authorization:"Bearer "+token
+
+}
+
+});
+
+const data=await response.json();
+
+if(!data.success){
+
+sessionStorage.clear();
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+}catch(e){
+
+sessionStorage.clear();
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+})();
+
+</script>
+
+<div class="topbar">
+<div class="title">⚙ Settings</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Device Information</h2>
+
+<div class="label">Device ID</div>
+
+<div class="deviceBox" id="deviceId">
+Loading...
+</div>
+
+<button onclick="copyDeviceId()">
+Copy Device ID
+</button>
+
+<a class="back" href="index.html">
+⬅ Back to Home
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+let deviceId = localStorage.getItem("deviceId");
+
+if(!deviceId){
+
+deviceId = "DEV-" +
+Math.random().toString(36)
+.substring(2,10)
+.toUpperCase();
+
+localStorage.setItem(
+"deviceId",
+deviceId
+);
+
+}
+
+document.getElementById("deviceId").textContent = deviceId;
+
+function copyDeviceId(){
+
+navigator.clipboard.writeText(deviceId);
+
+alert("Device ID copied!");
+
+}
+
+</script>
+
+</body>
+</html>
