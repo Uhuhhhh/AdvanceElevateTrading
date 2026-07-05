@@ -43,15 +43,21 @@ async function analyze(){
 
     });
 
-    const result =
-    await response.json();
+    const result = await response.json();
+
+if (!result.success) {
 
     document.getElementById("loading").innerHTML =
-    "Analysis Complete";
+    result.message;
 
-    showSignals(result.signals);
+    return;
 
 }
+
+document.getElementById("loading").innerHTML =
+"Analysis Complete";
+
+showSignals(result.signals);
 
 function showSignals(signals){
 
