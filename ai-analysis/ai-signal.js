@@ -58,6 +58,8 @@ imageInput.addEventListener("change", () => {
         previewImage.src = selectedImage;
 
         previewImage.style.display = "block";
+        
+        imageInput.value = "";
 
         analyzeBtn.disabled = false;
 
@@ -86,6 +88,29 @@ document.querySelectorAll(".tf").forEach(btn => {
         timeframe = btn.innerText;
 
     });
+
+});
+
+document.addEventListener("paste", (e) => {
+
+    const items = e.clipboardData.items;
+
+    for (const item of items) {
+
+        if (item.type.startsWith("image/")) {
+
+            const file = item.getAsFile();
+
+            selectedImage = file;
+
+            preview.hidden = false;
+            preview.src = URL.createObjectURL(file);
+
+            return;
+
+        }
+
+    }
 
 });
 
