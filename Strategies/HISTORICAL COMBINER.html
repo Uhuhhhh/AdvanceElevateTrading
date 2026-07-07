@@ -1711,83 +1711,96 @@ JSON.stringify(history)
 
 
     
-
 function displaySignal(data){
 
     if(!data.success){
 
         signalBox.className="signal-box";
-
         signalBox.innerHTML="NO SIGNAL";
-
         signalInfo.innerHTML=data.message;
 
         btn.disabled=false;
-
         btn.innerHTML="GENERATE SIGNAL";
-
         signalRunning=false;
 
         return;
-
     }
 
     signalBox.className="signal-box";
 
     if(data.signal==="CALL"){
-
         signalBox.classList.add("call");
-
     }else{
-
         signalBox.classList.add("put");
-
     }
 
     signalBox.innerHTML=data.signal;
 
     signalInfo.innerHTML=`
 
-Pair : ${data.pair}<br>
+<b>Pair :</b> ${data.pair}<br>
 
-Confidence : ${data.confidence}%<br>
+<b>Confidence :</b> ${data.confidence}% (${data.confidenceLabel})<br>
 
-Trend : ${data.trend}<br>
+<b>Trend :</b> ${data.trend}<br>
 
-Matches : ${data.matches}<br>
+<b>Historical Matches :</b> ${data.matches}<br>
 
-Win Rate : ${data.historicalWinRate}%<br>
+<b>Historical Win Rate :</b> ${data.historicalWinRate}%<br>
 
-Entry : ${data.entry}<br>
+<b>Entry :</b> ${data.entry}<br>
 
-Expiry : ${data.expiry}
+<b>Expiry :</b> ${data.expiry}<br>
+
+<b>HH :</b> ${data.marketStructure.hh}
+&nbsp;&nbsp;
+<b>HL :</b> ${data.marketStructure.hl}<br>
+
+<b>LH :</b> ${data.marketStructure.lh}
+&nbsp;&nbsp;
+<b>LL :</b> ${data.marketStructure.ll}<br>
+
+<b>BOS :</b>
+${data.bos.bullish ? "Bullish" : data.bos.bearish ? "Bearish" : "None"}<br>
+
+<b>CHoCH :</b>
+${data.choch.direction}<br>
+
+<b>Liquidity Sweep :</b>
+${data.liquiditySweep.bullish ? "Bullish" :
+data.liquiditySweep.bearish ? "Bearish" : "None"}<br>
+
+<b>Support :</b> ${data.supportResistance.support ? "YES" : "NO"}<br>
+
+<b>Resistance :</b> ${data.supportResistance.resistance ? "YES" : "NO"}<br>
+
+<b>Trend Continuation :</b> ${data.trendContinuation}<br>
+
+<b>Candle Cluster :</b> ${data.clusterDirection}<br>
+
+<b>Tick Pressure :</b> ${data.tickPressure}<br>
+
+<b>Volatility :</b> ${data.volatility}<br>
+
+<b>Analysis Hour :</b> ${data.analysisTime}:00
 
 `;
 
-saveSignal({
+    saveSignal({
 
-    pair: data.pair,
+        pair:data.pair,
+        signal:data.signal,
+        confidence:data.confidence,
+        entry:data.entry,
+        expiry:data.expiry,
+        entryPrice:data.entryPrice,
+        result:"PENDING",
+        time:new Date().toLocaleString()
 
-    signal: data.signal,
-
-    confidence: data.confidence,
-
-    entry: data.entry,
-
-    expiry: data.expiry,
-
-    entryPrice: data.entryPrice,
-
-    result: "PENDING",
-
-    time: new Date().toLocaleString()
-
-});
+    });
 
     btn.disabled=false;
-
     btn.innerHTML="GENERATE SIGNAL";
-
     signalRunning=false;
 
 }
