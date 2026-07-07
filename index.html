@@ -876,6 +876,31 @@ LOGIN
 
 </button>
 
+<div class="deviceBox">
+
+    <p class="contactAdmin">
+        Don't have access?
+        <a href="https://t.me/YOUR_USERNAME" target="_blank">
+            Contact Admin
+        </a>
+    </p>
+
+    <button id="getDeviceBtn" class="deviceBtn">
+        📱 Get Device ID
+    </button>
+
+    <div id="deviceInfo" style="display:none;">
+
+        <input id="deviceId" readonly>
+
+        <button id="copyDeviceBtn">
+            Copy
+        </button>
+
+    </div>
+
+</div>
+
 <p id="loginError"></p>
 
 </div>
@@ -1219,6 +1244,50 @@ error.innerHTML="Server Error";
 }
 
 }
+
+function getDeviceId() {
+
+    let deviceId = localStorage.getItem("deviceId");
+
+    if (!deviceId) {
+
+        // Modern browsers
+        if (window.crypto && crypto.randomUUID) {
+            deviceId = crypto.randomUUID();
+        } else {
+            // Fallback
+            deviceId = "DEV-" + Date.now() + "-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+        localStorage.setItem("deviceId", deviceId);
+    }
+
+    return deviceId;
+}
+
+document.getElementById("getDeviceBtn").addEventListener("click", () => {
+
+    const id = getDeviceId();
+
+    document.getElementById("deviceInfo").style.display = "block";
+    document.getElementById("deviceId").value = id;
+
+});
+
+document.getElementById("copyDeviceBtn").addEventListener("click", async () => {
+
+    const id = document.getElementById("deviceId").value;
+
+    try {
+        await navigator.clipboard.writeText(id);
+        alert("Device ID copied!");
+    } catch (e) {
+        document.getElementById("deviceId").select();
+        document.execCommand("copy");
+        alert("Device ID copied!");
+    }
+
+});
 
 function goPage(page){
 
