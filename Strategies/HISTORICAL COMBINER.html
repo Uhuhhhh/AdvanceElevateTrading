@@ -1190,27 +1190,6 @@ color:gold;
 
 </head>
 
-<div id="lockScreen">
-
-    <div class="lockBox">
-
-        <h1>🔐 Elevate Trading</h1>
-
-        <p>Enter Password</p>
-
-        <input
-        type="password"
-        id="passwordInput"
-        placeholder="Password">
-
-        <button id="unlockBtn">
-    UNLOCK
-</button>
-
-<div class="divider">
-    <span>OR</span>
-</div>
-
 <p class="contactText">
     Don't have access?
     <a href="https://t.me/YOUR_USERNAME" target="_blank">
@@ -1224,7 +1203,7 @@ color:gold;
 
 </div>
 
-<div id="mainApp" style="display:none;">
+<div id="mainApp">
 
 <!-- Premium Header -->
 
@@ -1302,6 +1281,82 @@ ELEVATE
 </div>
 
 <body>
+
+<script>
+
+const token = sessionStorage.getItem("token");
+
+if(!token){
+
+    window.location.replace("index.html");
+
+    throw new Error("Not logged in");
+
+}
+
+</script>
+
+<script>
+
+const token=sessionStorage.getItem("token");
+
+if(!token){
+
+location.replace("index.html");
+
+return;
+
+}
+
+(async()=>{
+
+const token=sessionStorage.getItem("token");
+
+if(!token){
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+try{
+
+const response=await fetch("/api/verify",{
+
+headers:{
+
+Authorization:"Bearer "+token
+
+}
+
+});
+
+const data=await response.json();
+
+if(!data.success){
+
+sessionStorage.clear();
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+}catch(e){
+
+sessionStorage.clear();
+
+window.location.replace("index.html");
+
+return;
+
+}
+
+})();
+
+</script>
 
 <div id="dashboardPage" class="page active">
 
@@ -1418,84 +1473,6 @@ Elevate Your Trading System
 </div>
 
 <script>
-
-async function sha256(text){
-
-    const data = new TextEncoder().encode(text);
-
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-
-    return Array.from(new Uint8Array(hashBuffer))
-        .map(b => b.toString(16).padStart(2,"0"))
-        .join("");
-
-}
-
-const USERS = {
-
-"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b":"DEV-SJUUDW5N",
-
-"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b":"DEV-1ITISEAQ",
-
-"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b":"DEV-2TRTHHJY"
-
-};
-document.getElementById("unlockBtn").addEventListener("click", async () => {
-
-    const password =
-    document.getElementById("passwordInput").value;
-
-    const deviceId =
-    localStorage.getItem("deviceId");
-
-    try{
-
-        const response = await fetch("/api/login",{
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify({
-
-                password,
-                deviceId
-
-            })
-
-        });
-
-        const data = await response.json();
-
-        if(data.success){
-
-            localStorage.setItem(
-                "token",
-                data.token
-            );
-            <!--Remove if free only local storage line-->
-            localStorage.setItem("premium", data.premium);
-
-            document.getElementById("lockScreen").style.display="none";
-            document.getElementById("mainApp").style.display="block";
-
-        }else{
-
-            document.getElementById("errorMsg").innerHTML =
-            data.message || "Login Failed";
-
-        }
-
-    }catch(e){
-
-        document.getElementById("errorMsg").innerHTML =
-        "Server Error";
-
-    }
-
-});
 
 
 function updateClock(){
