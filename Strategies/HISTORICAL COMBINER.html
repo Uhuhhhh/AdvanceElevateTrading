@@ -1497,8 +1497,6 @@ document.getElementById("unlockBtn").addEventListener("click", async () => {
 
 });
 
-const API_KEY =
-"290ece01744d4605a9ee9c3cfde3d18d";
 
 function updateClock(){
 
@@ -1570,109 +1568,53 @@ if(localStorage.getItem("premium") !== "true"){
     const market =
 document.getElementById("market").value;
 
-const symbolMap = {
-"AUDCAD":"AUD/CAD",
-"AUDCHF":"AUD/CHF",
-"AUDJPY":"AUD/JPY",
-"AUDUSD":"AUD/USD",
 
-"CADCHF":"CAD/CHF",
-"CADJPY":"CAD/JPY",
+    const token = localStorage.getItem("token");
 
-"CHFJPY":"CHF/JPY",
+try{
 
-"EURAUD":"EUR/AUD",
-"EURCAD":"EUR/CAD",
-"EURCHF":"EUR/CHF",
-"EURGBP":"EUR/GBP",
-"EURJPY":"EUR/JPY",
-"EURUSD":"EUR/USD",
+    const response = await fetch("/api/signal",{
 
-"GBPAUD":"GBP/AUD",
-"GBPCAD":"GBP/CAD",
-"GBPCHF":"GBP/CHF",
-"GBPJPY":"GBP/JPY",
-"GBPUSD":"GBP/USD",
+        method:"POST",
 
-"USDCAD":"USD/CAD",
-"USDCHF":"USD/CHF",
-"USDJPY":"USD/JPY"};
+        headers:{
 
-const symbol = symbolMap[market];
+            "Content-Type":"application/json",
 
-    const url =
-    `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1min&outputsize=5000&apikey=${API_KEY}`;
+            "Authorization":"Bearer " + token
 
-    try{
+        },
 
-    const response =
-    await fetch(url);
+        body:JSON.stringify({
 
-    const data =
-    await response.json();
+            market,
 
-    if(!data.values){
+            timeframe:parseInt(
+                document.getElementById("timeframe").value
+            )
 
-        signalBox.innerHTML =
-        "NO DATA";
+        })
 
-        btn.disabled = false;
-        btn.innerHTML =
-        "GENERATE SIGNAL";
+    });
 
-        signalRunning = false;
+    const result = await response.json();
 
-        return;
-    }
+    displaySignal(result);
 
-    const candles = data.values.reverse();
+}catch(err){
 
-const token = localStorage.getItem("token");
+    signalBox.innerHTML = "ERROR";
 
-const response2 = await fetch("/api/signal",{
-
-    method:"POST",
-
-    headers:{
-
-        "Content-Type":"application/json",
-
-        "Authorization":"Bearer " + token
-
-    },
-
-    body:JSON.stringify({
-
-        candles,
-
-        timeframe:parseInt(
-            document.getElementById("timeframe").value
-        ),
-
-        market
-
-    })
-
-});
-
-const result = await response2.json();
-
-displaySignal(result);
-
-}
-catch(err){
-
-    signalBox.innerHTML =
-    "ERROR";
+    signalInfo.innerHTML = err.message;
 
     btn.disabled = false;
 
-    btn.innerHTML =
-    "GENERATE SIGNAL";
+    btn.innerHTML = "GENERATE SIGNAL";
 
     signalRunning = false;
 
     console.log(err);
+
 }
 }
 
@@ -1827,110 +1769,7 @@ overlay.style.display="block";
 
 }
 
-async function updateSignalResult(pair, signal, entryPrice){
 
-try{
-
-const symbolMap={
-"AUDCAD":"AUD/CAD",
-"AUDCHF":"AUD/CHF",
-"AUDJPY":"AUD/JPY",
-"AUDUSD":"AUD/USD",
-"CADCHF":"CAD/CHF",
-"CADJPY":"CAD/JPY",
-"CHFJPY":"CHF/JPY",
-"EURAUD":"EUR/AUD",
-"EURCAD":"EUR/CAD",
-"EURCHF":"EUR/CHF",
-"EURGBP":"EUR/GBP",
-"EURJPY":"EUR/JPY",
-"EURUSD":"EUR/USD",
-"GBPAUD":"GBP/AUD",
-"GBPCAD":"GBP/CAD",
-"GBPCHF":"GBP/CHF",
-"GBPJPY":"GBP/JPY",
-"GBPUSD":"GBP/USD",
-"USDCAD":"USD/CAD",
-"USDCHF":"USD/CHF",
-"USDJPY":"USD/JPY"
-};
-
-const symbol=symbolMap[pair];
-
-if(!symbol) return;
-
-const response=await fetch(
-`https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1min&outputsize=2&apikey=${API_KEY}`
-);
-
-const data=await response.json();
-
-if(!data || !data.values || data.values.length===0) return;
-
-const close=parseFloat(data.values[0].close);
-
-let history=JSON.parse(localStorage.getItem("signalHistory"))||[];
-
-const index=history.findIndex(x=>x.result==="PENDING" && x.pair===pair);
-
-if(index===-1) return;
-
-history[index].result=
-signal==="CALL"
-? (close>entryPrice?"WIN":"LOSS")
-: (close<entryPrice?"WIN":"LOSS");
-
-localStorage.setItem("signalHistory",JSON.stringify(history));
-
-}catch(err){
-
-console.error("Result Update Error:",err);
-
-}
-
-}
-function startCooldown(minutes){
-
-    let seconds =
-    minutes * 60;
-
-    const timer =
-    setInterval(()=>{
-
-        seconds--;
-
-        btn.innerHTML =
-        `WAIT ${seconds}s`;
-
-        if(seconds <= 0){
-
-            clearInterval(timer);
-
-            btn.disabled = false;
-
-            btn.innerHTML =
-            "GENERATE SIGNAL";
-
-            signalRunning = false;
-
-            signalBox.className =
-            "signal-box";
-
-            signalBox.innerHTML =
-            "WAIT";
-
-            signalInfo.innerHTML =
-            `
-            Market : --<br>
-            Timeframe : --<br>
-            Status : Ready
-            `;
-
-        }
-
-    },1000);
-
-}
 
 function updateDashboard(){
 
