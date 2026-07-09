@@ -1226,6 +1226,41 @@ font-size:12px;
 margin-top:3px;
 }
 
+.newsSection{
+margin-top:25px;
+background:#11151d;
+padding:25px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.newsSection h2{
+margin-bottom:20px;
+color:white;
+}
+
+.newsItem{
+padding:15px;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.newsItem:last-child{
+border-bottom:none;
+}
+
+.newsItem a{
+color:white;
+text-decoration:none;
+font-weight:600;
+display:block;
+}
+
+.newsItem p{
+color:#999;
+font-size:13px;
+margin-top:6px;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -1740,31 +1775,17 @@ Manage Plan
 
 <!-- ===== QUICK ACTION ===== -->
 
-<section class="actionGrid">
+<section class="newsSection">
 
-<button onclick="location.href='dashboard.html'">
+<h2>📰 Live Market News</h2>
 
-⚡ Generate Signal
+<div id="marketNews">
 
-</button>
+<div class="newsItem">
+Loading latest market news...
+</div>
 
-<button onclick="location.href='strategy.html'">
-
-🧠 AI Strategies
-
-</button>
-
-<button onclick="location.href='signal-history.html'">
-
-📜 History
-
-</button>
-
-<button onclick="location.href='rules.html'">
-
-📖 Rules
-
-</button>
+</div>
 
 </section>
 
@@ -2081,6 +2102,46 @@ async function updateMarket() {
 updateMarket();
 setInterval(updateMarket, 15000);
 
+
+async function loadNews(){
+
+    try{
+
+        const res = await fetch(
+            "https://api.twelvedata.com/news?source=forex&apikey=4d2873a3c9b14f229dd33c3e84549423"
+        );
+
+        const data = await res.json();
+
+        const box=document.getElementById("marketNews");
+
+        box.innerHTML="";
+
+        data.slice(0,5).forEach(news=>{
+
+            box.innerHTML+=`
+            <div class="newsItem">
+                <a href="${news.url}" target="_blank">
+                    ${news.title}
+                </a>
+                <p>${news.date}</p>
+            </div>
+            `;
+
+        });
+
+    }catch(e){
+
+        document.getElementById("marketNews").innerHTML=
+        "<div class='newsItem'>Unable to load news.</div>";
+
+    }
+
+}
+
+loadNews();
+
+setInterval(loadNews,300000);
 
 </script>
 </div>
