@@ -1227,6 +1227,7 @@ margin-top:3px;
 }
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -1706,7 +1707,7 @@ Manage Plan
 
 </div>
 
-<canvas id="miniChart"></canvas>
+<canvas id="miniChart" height="180"></canvas>
 
 </section>
 
@@ -2002,8 +2003,6 @@ function goPage(page){
 
 }
 
-</script>
-</div>
 // Live Clock
 
 setInterval(()=>{
@@ -2032,6 +2031,61 @@ document.getElementById("jpyPrice").innerHTML=
 (157+Math.random()).toFixed(2);
 
 },1500);
+
+const ctx=document.getElementById("miniChart").getContext("2d");
+
+const labels=[];
+const prices=[];
+
+for(let i=0;i<20;i++){
+    labels.push(i);
+    prices.push(100+Math.random()*5);
+}
+
+const chart=new Chart(ctx,{
+    type:"line",
+    data:{
+        labels:labels,
+        datasets:[{
+            data:prices,
+            borderColor:"#7b61ff",
+            borderWidth:3,
+            pointRadius:0,
+            tension:.4,
+            fill:true,
+            backgroundColor:"rgba(123,97,255,.15)"
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{
+                display:false
+            }
+        },
+        scales:{
+            x:{
+                display:false
+            },
+            y:{
+                display:false
+            }
+        }
+    }
+});
+
+setInterval(()=>{
+
+    prices.shift();
+
+    prices.push(prices[prices.length-1]+(Math.random()-.5));
+
+    chart.update();
+
+},1000);
+
+</script>
+</div>
 
 </body>
 </html>
