@@ -2043,7 +2043,6 @@ now.toLocaleTimeString();
 
 // Fake market animation
 
-const API_KEY = process.env.TWELVEDATA_API;
 
 async function updateMarket() {
 
@@ -2082,11 +2081,6 @@ async function updateMarket() {
 updateMarket();
 setInterval(updateMarket, 5000);
 
-updateMarket();
-
-setInterval(updateMarket,3000);
-
-<canvas id="miniChart" height="180"></canvas>
 
 </script>
 </div>
