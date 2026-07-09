@@ -2016,21 +2016,37 @@ now.toLocaleTimeString();
 
 // Fake market animation
 
-setInterval(()=>{
+async function updateMarket(){
 
-document.getElementById("eurusdPrice").innerHTML=
-(1.089+Math.random()/100).toFixed(5);
+    try{
 
-document.getElementById("gbpusdPrice").innerHTML=
-(1.274+Math.random()/100).toFixed(5);
+        const response = await fetch("/api/markets");
 
-document.getElementById("goldPrice").innerHTML=
-(2330+Math.random()*10).toFixed(2);
+        const data = await response.json();
 
-document.getElementById("jpyPrice").innerHTML=
-(157+Math.random()).toFixed(2);
+        document.getElementById("eurusdPrice").textContent =
+            data.EURUSD.price;
 
-},1500);
+        document.getElementById("gbpusdPrice").textContent =
+            data.GBPUSD.price;
+
+        document.getElementById("goldPrice").textContent =
+            data.XAUUSD.price;
+
+        document.getElementById("jpyPrice").textContent =
+            data.USDJPY.price;
+
+    }catch(e){
+
+        console.log("Market API Offline");
+
+    }
+
+}
+
+updateMarket();
+
+setInterval(updateMarket,3000);
 
 const ctx=document.getElementById("miniChart").getContext("2d");
 
