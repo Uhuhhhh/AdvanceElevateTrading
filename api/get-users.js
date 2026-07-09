@@ -24,12 +24,14 @@ module.exports = async (req, res) => {
 
         res.json(users);
 
-    } catch(err){
+    } catch (error) {
+    console.error(error);
 
-        res.status(401).json({
-            success:false
-        });
-
-    }
+    return res.status(500).json({
+        success: false,
+        error: error.message,
+        stack: error.stack
+    });
+}
 
 };
