@@ -1046,45 +1046,15 @@ Clear Local Data
 
 <nav class="bottomNav">
 
-<a href="index.html">
+<a href="index.html">🏠<span>Home</span></a>
 
-🏠
+<a href="dashboard.html">📊<span>Signal</span></a>
 
-<span>Home</span>
+<a href="strategy.html">🧠<span>AI</span></a>
 
-</a>
+<a href="signal-history.html">📜<span>History</span></a>
 
-<a href="dashboard.html">
-
-📊
-
-<span>Signal</span>
-
-</a>
-
-<a href="strategy.html">
-
-🧠
-
-<span>AI</span>
-
-</a>
-
-<a href="signal-history.html">
-
-📜
-
-<span>History</span>
-
-</a>
-
-<a href="settings.html">
-
-⚙
-
-<span>Settings</span>
-
-</a>
+<a href="settings.html" class="active">⚙<span>Settings</span></a>
 
 </nav>
 
@@ -1272,17 +1242,19 @@ async function loadAccount() {
         const badge = document.getElementById("premiumBadge");
         const plan = document.getElementById("planName");
 
-        if (data.premium === true) {
+        const user = data.user || data;
 
-            badge.innerHTML = "🟣 Premium";
-            plan.innerHTML = "Premium";
+if (user.premium === true) {
+    badge.innerHTML = "🟣 Premium";
+    plan.innerHTML = "Premium";
+} else {
+    badge.innerHTML = "⚪ Free";
+    plan.innerHTML = "Free";
+}
 
-        } else {
-
-            badge.innerHTML = "⚪ Free";
-            plan.innerHTML = "Free";
-
-        }
+document.getElementById("licenseKey").value = user.key || "Unknown";
+document.getElementById("expiryDate").innerHTML = user.expiry || "Unlimited";
+document.getElementById("planExpiry").innerHTML = user.expiry || "Unlimited";
 
     } catch (err) {
 
