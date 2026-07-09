@@ -851,6 +851,381 @@ color:#ff4444;
 
 }
 
+/* ===========================
+   NEW PREMIUM UI
+=========================== */
+
+.dashboardContainer{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.heroCard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    background:linear-gradient(135deg,#0f1117,#171a25);
+    border:1px solid rgba(255,215,0,.18);
+    border-radius:30px;
+    padding:35px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.heroLeft h5{
+    color:#9e7cff;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.heroLeft h1{
+    font-size:48px;
+    color:white;
+    margin:0;
+    font-weight:800;
+}
+
+.heroLeft p{
+    color:#b8b8b8;
+    margin:20px 0;
+    line-height:28px;
+    max-width:420px;
+}
+
+.heroLeft button{
+    height:56px;
+    padding:0 35px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(90deg,#6f3cff,#9348ff);
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.heroRight{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.bullCircle{
+    width:240px;
+    height:240px;
+    border-radius:50%;
+    background:radial-gradient(circle,#4b2cff,#111);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:120px;
+    box-shadow:0 0 45px rgba(120,80,255,.4);
+}
+
+.marketSection{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.marketCard{
+    background:#11151f;
+    border-radius:20px;
+    padding:22px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.marketCard h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+.marketCard h2{
+    font-size:30px;
+    color:white;
+}
+
+.marketCard span{
+    display:inline-block;
+    margin-top:12px;
+    font-weight:700;
+}
+
+.up{
+    color:#00ff99;
+}
+
+.down{
+    color:#ff5c75;
+}
+
+.signalHero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    background:linear-gradient(135deg,#1b1339,#0f1022);
+    border-radius:30px;
+    padding:35px;
+    margin-bottom:30px;
+}
+
+.signalLeft h5{
+    color:#b070ff;
+    margin-bottom:10px;
+}
+
+.signalLeft h1{
+    font-size:44px;
+    color:white;
+    margin-bottom:15px;
+}
+
+.signalLeft p{
+    color:#bcbcbc;
+    line-height:28px;
+    margin-bottom:25px;
+}
+
+.signalLeft button{
+    background:#6d39ff;
+    color:white;
+    border:none;
+    height:58px;
+    padding:0 35px;
+    border-radius:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.signalRight{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    border:4px solid #7f55ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:120px;
+    color:#9d78ff;
+    box-shadow:0 0 45px rgba(125,90,255,.35);
+}
+
+.featureGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.featureCard{
+    background:#11151d;
+    border-radius:22px;
+    padding:28px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.featureIcon{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:#1d2435;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.featureCard h2{
+    color:white;
+    margin-bottom:10px;
+}
+
+.featureCard p{
+    color:#a7a7a7;
+    margin-bottom:20px;
+}
+
+.featureCard button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:14px;
+    background:#6f3cff;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.premiumBanner{
+    margin-top:30px;
+    background:linear-gradient(90deg,#151515,#232015);
+    border:1px solid rgba(255,215,0,.15);
+    border-radius:22px;
+    padding:28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.premiumBanner h2{
+    color:#FFD700;
+}
+
+.premiumBanner p{
+    color:#bdbdbd;
+}
+
+.premiumBanner button{
+    background:#FFD700;
+    color:black;
+    border:none;
+    padding:15px 28px;
+    border-radius:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:900px){
+
+.heroCard,
+.signalHero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.marketSection{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.featureGrid{
+    grid-template-columns:1fr;
+}
+
+.heroLeft h1,
+.signalLeft h1{
+    font-size:34px;
+}
+
+.bullCircle,
+.signalRight{
+    width:180px;
+    height:180px;
+    font-size:90px;
+}
+
+.premiumBanner{
+    flex-direction:column;
+    gap:20px;
+    text-align:center;
+}
+
+}
+
+.overviewGrid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-top:25px;
+}
+
+.overviewCard{
+background:#121212;
+padding:22px;
+border-radius:20px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.overviewCard h3{
+color:#aaa;
+margin-bottom:10px;
+}
+
+.overviewCard h1{
+font-size:38px;
+color:#FFD700;
+}
+
+.chartCard{
+margin-top:25px;
+background:#101010;
+padding:25px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.chartTop{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.chartTop h2{
+color:white;
+}
+
+#liveClock{
+color:#00ff99;
+font-weight:bold;
+}
+
+#miniChart{
+width:100%;
+height:180px;
+background:#151515;
+border-radius:18px;
+}
+
+.actionGrid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+margin-top:25px;
+}
+
+.actionGrid button{
+height:60px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#6f3cff,#914dff);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+.bottomNav{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+height:75px;
+background:#0f1117;
+display:flex;
+justify-content:space-around;
+align-items:center;
+border-top:1px solid rgba(255,255,255,.08);
+z-index:999;
+}
+
+.bottomNav a{
+display:flex;
+flex-direction:column;
+align-items:center;
+color:#ddd;
+font-size:24px;
+text-decoration:none;
+}
+
+.bottomNav span{
+font-size:12px;
+margin-top:3px;
+}
+
 </style>
 
 </head>
@@ -909,47 +1284,39 @@ LOGIN
 
 <div id="mainContent" style="display:none;">
 
+<!-- ========= TOP BAR ========= -->
+
 <header class="topbar">
 
-<div class="brand">
+    <div class="brand">
+        <div class="logo">
+            <img src="logo.png" style="width:42px;height:42px;border-radius:50%;">
+        </div>
 
-<div class="logo">👑</div>
+        <div>
+            <h2>Elevate</h2>
+            <p>Premium Trading</p>
+        </div>
+    </div>
 
-<div>
+    <div class="topRight">
 
-<h2>Elevate</h2>
+        <div class="liveStatus">
+            <div class="liveDot"></div>
+            LIVE
+        </div>
 
-<p>Premium Dashboard</p>
+        <div class="menuBtn" onclick="toggleMenu()">
+            ☰
+        </div>
 
-</div>
-
-</div>
-
-<div class="topRight">
-
-<div class="liveStatus">
-
-<div class="liveDot"></div>
-
-LIVE
-
-</div>
-
-<div id="clock" class="clock">
-
-ELEVATE
-
-</div>
-
-<div class="menuBtn" onclick="toggleMenu()">
-☰
-</div>
-
-</div>
+    </div>
 
 </header>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<!-- ========= SIDEBAR ========= -->
 
 <aside id="sidebar" class="sidebar">
 
@@ -959,7 +1326,7 @@ ELEVATE
 
 <h2>Elevate</h2>
 
-<p>Trading Dashboard</p>
+<p>Premium Dashboard</p>
 
 </div>
 
@@ -971,58 +1338,210 @@ ELEVATE
 
 <a href="signal-history.html">📜 Signal History</a>
 
+<a href="rules.html">📖 Trading Rules</a>
+
+<a href="journal/trading-journal.html">📒 Journal</a>
+
 <a href="settings.html">⚙ Settings</a>
 
-<a href="rules.html">⚙ Rules</a>
-
-<a href="journal/trading-journal.html">📉 Journal</a>
-
-<a href="Admin/admin.html">👑 Admin Panel</a>
+<a href="Admin/admin.html">👑 Admin</a>
 
 </aside>
 
-<section class="hero">
+<!-- ========= PAGE ========= -->
 
-<div class="dashboard">
+<div class="dashboardContainer">
 
-<div class="welcomeCard">
+<!-- ========= HERO ========= -->
 
-<h1>👋 Welcome Back ji</h1>
+<section class="heroCard">
 
-<p>Elevate Trading Premium Dashboard</p>
+<div class="heroLeft">
 
-</div>
+<h5>GOOD MORNING</h5>
 
-<div class="grid">
+<h1>
 
-<!-- Dashboard -->
+Welcome Back 👋
 
-<div class="card">
-
-<div class="icon">📊</div>
-
-<h3>Dashboard</h3>
+</h1>
 
 <p>
-Generate live AI trading signals.
+
+Generate AI powered trading signals with
+historical candle analysis.
+
 </p>
 
 <button onclick="location.href='dashboard.html'">
-OPEN
+
+Generate Signal →
+
 </button>
 
 </div>
 
-<!-- Strategy -->
+<div class="heroRight">
 
-<div class="card">
+<div class="bullCircle">
 
-<div class="icon">🧠</div>
+🐂
 
-<h3>Strategies</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- ========= MARKET ========= -->
+
+<section class="marketSection">
+
+<div class="marketCard">
+
+<h3>EUR/USD</h3>
+
+<h2 id="eurusdPrice">1.08945</h2>
+
+<span class="up">
+
++0.25%
+
+</span>
+
+</div>
+
+<div class="marketCard">
+
+<h3>GBP/USD</h3>
+
+<h2 id="gbpusdPrice">1.27431</h2>
+
+<span class="down">
+
+-0.18%
+
+</span>
+
+</div>
+
+<div class="marketCard">
+
+<h3>XAU/USD</h3>
+
+<h2 id="goldPrice">2336.45</h2>
+
+<span class="up">
+
++0.38%
+
+</span>
+
+</div>
+
+<div class="marketCard">
+
+<h3>USD/JPY</h3>
+
+<h2 id="jpyPrice">157.32</h2>
+
+<span class="down">
+
+-0.12%
+
+</span>
+
+</div>
+
+</section>
+
+<!-- ========= AI ========= -->
+
+<section class="signalHero">
+
+<div class="signalLeft">
+
+<h5>AI ENGINE</h5>
+
+<h1>
+
+Generate Live Signal
+
+</h1>
 
 <p>
-Choose your preferred strategy.
+
+High probability trade setups powered
+by historical pattern analysis.
+
+</p>
+
+<button onclick="location.href='dashboard.html'">
+
+Generate Signal
+
+</button>
+
+</div>
+
+<div class="signalRight">
+
+🧠
+
+</div>
+
+</section>
+
+<!-- ========= FEATURES ========= -->
+
+<section class="featureGrid">
+
+<div class="featureCard">
+
+<div class="featureIcon">
+
+📊
+
+</div>
+
+<h2>
+
+Dashboard
+
+</h2>
+
+<p>
+
+Generate live AI signals.
+
+</p>
+
+<button onclick="location.href='dashboard.html'">
+
+OPEN
+
+</button>
+
+</div>
+
+<div class="featureCard">
+
+<div class="featureIcon">
+
+🧠
+
+</div>
+
+<h2>
+
+Strategies
+
+</h2>
+
+<p>
+
+Historical & AI strategies.
+
 </p>
 
 <button onclick="location.href='strategy.html'">
@@ -1033,16 +1552,24 @@ OPEN
 
 </div>
 
-<!-- History -->
+<div class="featureCard">
 
-<div class="card">
+<div class="featureIcon">
 
-<div class="icon">📜</div>
+📜
 
-<h3>Signal History</h3>
+</div>
+
+<h2>
+
+Signal History
+
+</h2>
 
 <p>
-Tap to view all previous signals.
+
+View previous trades.
+
 </p>
 
 <button onclick="location.href='signal-history.html'">
@@ -1053,19 +1580,27 @@ OPEN
 
 </div>
 
-<!-- Settings -->
+<div class="featureCard">
 
-<div class="card">
+<div class="featureIcon">
 
-<div class="icon">⚙</div>
+📖
 
-<h3>Settings</h3>
+</div>
+
+<h2>
+
+Trading Rules
+
+</h2>
 
 <p>
-Manage account and application.
+
+Follow trading discipline.
+
 </p>
 
-<button onclick="location.href='settings.html'">
+<button onclick="location.href='rules.html'">
 
 OPEN
 
@@ -1073,33 +1608,183 @@ OPEN
 
 </div>
 
-</div>
+</section>
 
-<div class="premiumCard">
+<!-- ========= PREMIUM ========= -->
+
+<section class="premiumBanner">
 
 <div>
 
-<h2>💎 Premium Plan</h2>
+<h2>
+
+👑 Premium Active
+
+</h2>
 
 <p>
 
-Access all premium features.
+All premium features unlocked.
 
 </p>
 
 </div>
 
-<div class="activeBadge">
+<button>
 
-ACTIVE
+Manage Plan
+
+</button>
+
+</section>
 
 </div>
 
+<!-- ===== LIVE OVERVIEW ===== -->
+
+<section class="overviewGrid">
+
+<div class="overviewCard">
+
+<h3>Today's Signals</h3>
+
+<h1 id="todaySignals">12</h1>
+
+<p>Generated Today</p>
+
 </div>
+
+<div class="overviewCard">
+
+<h3>Win Rate</h3>
+
+<h1 id="winRate">91%</h1>
+
+<p>Last 100 Signals</p>
+
+</div>
+
+<div class="overviewCard">
+
+<h3>Confidence</h3>
+
+<h1 id="confidence">95%</h1>
+
+<p>AI Prediction</p>
+
+</div>
+
+<div class="overviewCard">
+
+<h3>Server</h3>
+
+<h1 style="color:#00ff99;">ONLINE</h1>
+
+<p>Realtime</p>
 
 </div>
 
 </section>
+
+<!-- ===== LIVE CHART ===== -->
+
+<section class="chartCard">
+
+<div class="chartTop">
+
+<h2>
+
+📈 Live Market
+
+</h2>
+
+<div id="liveClock">
+
+00:00:00
+
+</div>
+
+</div>
+
+<canvas id="miniChart"></canvas>
+
+</section>
+
+<!-- ===== QUICK ACTION ===== -->
+
+<section class="actionGrid">
+
+<button onclick="location.href='dashboard.html'">
+
+⚡ Generate Signal
+
+</button>
+
+<button onclick="location.href='strategy.html'">
+
+🧠 AI Strategies
+
+</button>
+
+<button onclick="location.href='signal-history.html'">
+
+📜 History
+
+</button>
+
+<button onclick="location.href='rules.html'">
+
+📖 Rules
+
+</button>
+
+</section>
+
+<!-- ===== BOTTOM NAV ===== -->
+
+<nav class="bottomNav">
+
+<a href="index.html">
+
+🏠
+
+<span>Home</span>
+
+</a>
+
+<a href="dashboard.html">
+
+📊
+
+<span>Signal</span>
+
+</a>
+
+<a href="strategy.html">
+
+🧠
+
+<span>AI</span>
+
+</a>
+
+<a href="signal-history.html">
+
+📜
+
+<span>History</span>
+
+</a>
+
+<a href="settings.html">
+
+⚙
+
+<span>Settings</span>
+
+</a>
+
+</nav>
 <footer>
 
 © 2026 Elevate Trading
@@ -1319,6 +2004,34 @@ function goPage(page){
 
 </script>
 </div>
+// Live Clock
+
+setInterval(()=>{
+
+const now=new Date();
+
+document.getElementById("liveClock").innerHTML=
+now.toLocaleTimeString();
+
+},1000);
+
+// Fake market animation
+
+setInterval(()=>{
+
+document.getElementById("eurusdPrice").innerHTML=
+(1.089+Math.random()/100).toFixed(5);
+
+document.getElementById("gbpusdPrice").innerHTML=
+(1.274+Math.random()/100).toFixed(5);
+
+document.getElementById("goldPrice").innerHTML=
+(2330+Math.random()*10).toFixed(2);
+
+document.getElementById("jpyPrice").innerHTML=
+(157+Math.random()).toFixed(2);
+
+},1500);
 
 </body>
 </html>
