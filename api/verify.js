@@ -23,9 +23,18 @@ module.exports = function(req,res){
         );
 
         return res.status(200).json({
-            success:true,
-            user:decoded
-        });
+
+    success: true,
+
+    premium: decoded.premium || false,
+
+    key: decoded.key || "",
+
+    expiry: decoded.expiry || "Unlimited",
+
+    user: decoded
+
+});
 
     }catch(e){
 
