@@ -2131,11 +2131,10 @@ async function loadNews(){
         });
 
     }catch(e){
-
-        document.getElementById("marketNews").innerHTML=
-        "<div class='newsItem'>Unable to load news.</div>";
-
-    }
+    console.error(e);
+    document.getElementById("marketNews").innerHTML =
+        "<div class='newsItem'>" + e.message + "</div>";
+}
 
 }
 
