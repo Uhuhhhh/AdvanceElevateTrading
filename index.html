@@ -2103,38 +2103,49 @@ updateMarket();
 setInterval(updateMarket, 15000);
 
 
-async function loadNews(){
+const FINNHUB_API = "d97q461r01qng2np4fc0d97q461r01qng2np4fcg";
 
-    try{
+async function loadNews() {
 
-        const res = await fetch(
-            "https://api.twelvedata.com/news?source=forex&apikey=4d2873a3c9b14f229dd33c3e84549423"
+    try {
+
+        const response = await fetch(
+            `https://finnhub.io/api/v1/news?category=forex&token=${FINNHUB_API}`
         );
 
-        const data = await res.json();
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
 
-        const box=document.getElementById("marketNews");
+        const news = await response.json();
 
-        box.innerHTML="";
+        const box = document.getElementById("marketNews");
 
-        data.slice(0,5).forEach(news=>{
+        box.innerHTML = "";
 
-            box.innerHTML+=`
-            <div class="newsItem">
-                <a href="${news.url}" target="_blank">
-                    ${news.title}
-                </a>
-                <p>${news.date}</p>
-            </div>
+        news.slice(0,5).forEach(item => {
+
+            const date = new Date(item.datetime * 1000);
+
+            box.innerHTML += `
+                <div class="newsItem">
+                    <a href="${item.url}" target="_blank">
+                        ${item.headline}
+                    </a>
+                    <p>${item.source} • ${date.toLocaleString()}</p>
+                </div>
             `;
 
         });
 
-    }catch(e){
-    console.error(e);
-    document.getElementById("marketNews").innerHTML =
-        "<div class='newsItem'>" + e.message + "</div>";
-}
+    } catch (err) {
+
+        console.error(err);
+
+        document.getElementById("marketNews").innerHTML =
+            "<div class='newsItem'>Unable to load market news.</div>";
+
+    }
 
 }
 
