@@ -59,21 +59,10 @@ module.exports = async (req, res) => {
       });
     }
 
-    const token=createToken({
-
-    uid:doc.id,
-
-    email:user.email||"",
-
-    premium:user.premium,
-
-    key:user.key,
-
-    expiry:user.expiry,
-
-    active:user.active
-
-});
+    const token = createToken({
+      uid: doc.id,
+      email: user.email || ""
+    });
 
     return res.json({
       success: true,
