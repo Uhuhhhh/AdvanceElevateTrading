@@ -2317,8 +2317,6 @@ if(fabBtn){
 
 async function generateSignal(){
 
-    const token = "";
-
     generateBtn.disabled = true;
 
 if(heroBtn){
@@ -2331,6 +2329,8 @@ if(heroBtn){
     heroBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> ANALYZING';
 }
 
+const token = localStorage.getItem("token");
+
     try{
 
         const response=await fetch("/api/signal",{
@@ -2338,8 +2338,12 @@ if(heroBtn){
             method:"POST",
 
             headers:{
-    "Content-Type":"application/json"
-},
+
+            "Content-Type":"application/json",
+
+            "Authorization":"Bearer " + token
+
+        },
 
             body:JSON.stringify({
 
