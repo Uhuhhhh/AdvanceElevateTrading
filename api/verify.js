@@ -26,11 +26,11 @@ module.exports = function(req,res){
 
     success: true,
 
-    premium: decoded.premium || false,
+    premium: user.premium,
 
-    key: decoded.key || "",
+key: user.key,
 
-    expiry: decoded.expiry || "Unlimited",
+expiry: user.expiry,
 
     user: decoded
 
