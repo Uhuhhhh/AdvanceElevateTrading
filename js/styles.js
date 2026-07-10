@@ -1,65 +1,25 @@
-(async()=>{
+(() => {
+    const token = sessionStorage.getItem("token");
 
-const token=localStorage.getItem("token");
-const loginTime=Number(localStorage.getItem("loginTime"));
+    if (!token) {
+        window.location.replace("../index.html"); // Change path if needed
+        return;
+    }
 
-const SESSION_TIME=60*60*1000;
-
-function logout(){
-
-localStorage.removeItem("token");
-localStorage.removeItem("loginTime");
-
-const path=
-
-location.pathname.includes("/Admin/")||
-
-location.pathname.includes("/journal/")
-
-? "../index.html"
-
-: "index.html";
-
-location.replace(path);
-
-}
-
-if(!token||!loginTime){
-
-logout();
-return;
-
-}
-
-if(Date.now()-loginTime>SESSION_TIME){
-
-logout();
-return;
-
-}
-
-try{
-
-const response=await fetch("/api/verify",{
-
-headers:{
-Authorization:"Bearer "+token
-}
-
-});
-
-const data=await response.json();
-
-if(!response.ok||!data.success){
-
-logout();
-
-}
-
-}catch{
-
-logout();
-
-}
-
+    fetch("/api/verify", {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) {
+            sessionStorage.clear();
+            window.location.replace("../index.html");
+        }
+    })
+    .catch(() => {
+        sessionStorage.clear();
+        window.location.replace("../index.html");
+    });
 })();
