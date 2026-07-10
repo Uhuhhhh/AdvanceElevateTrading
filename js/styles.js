@@ -1,49 +1,65 @@
-(async () => {
+(async()=>{
 
-    const token = localStorage.getItem("token");
-    const loginTime = Number(localStorage.getItem("loginTime"));
+const token=localStorage.getItem("token");
+const loginTime=Number(localStorage.getItem("loginTime"));
 
-    const SESSION_TIME = 60 * 60 * 1000; // 1 hour
+const SESSION_TIME=60*60*1000;
 
-    if (
-        !token ||
-        !loginTime ||
-        (Date.now() - loginTime) > SESSION_TIME
-    ) {
+function logout(){
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("loginTime");
+localStorage.removeItem("token");
+localStorage.removeItem("loginTime");
 
-        window.location.replace("../index.html");
-        return;
+const path=
 
-    }
+location.pathname.includes("/Admin/")||
 
-    try {
+location.pathname.includes("/journal/")
 
-        const response = await fetch("/api/verify", {
+? "../index.html"
 
-            headers: {
-                Authorization: "Bearer " + token
-            }
+: "index.html";
 
-        });
+location.replace(path);
 
-        const data = await response.json();
+}
 
-        if (!response.ok || !data.success) {
+if(!token||!loginTime){
 
-            throw new Error("Invalid session");
+logout();
+return;
 
-        }
+}
 
-    } catch (err) {
+if(Date.now()-loginTime>SESSION_TIME){
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("loginTime");
+logout();
+return;
 
-        window.location.replace("../index.html");
+}
 
-    }
+try{
+
+const response=await fetch("/api/verify",{
+
+headers:{
+Authorization:"Bearer "+token
+}
+
+});
+
+const data=await response.json();
+
+if(!response.ok||!data.success){
+
+logout();
+
+}
+
+}catch{
+
+logout();
+
+}
 
 })();
