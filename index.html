@@ -1865,14 +1865,13 @@ overlay.style.display="block";
 
 <script>
 
-const SESSION_TIME = 5 * 60 * 1000; // 5 minutes
+const SESSION_TIME = 1 * 60 * 1000;
 
-const loginTime = Number(sessionStorage.getItem("loginTime"));
+const loginTime = Number(localStorage.getItem("loginTime"));
 
 if (loginTime && (Date.now() - loginTime) > SESSION_TIME) {
-
-    sessionStorage.clear();
-
+    localStorage.removeItem("token");
+    localStorage.removeItem("loginTime");
 }
 
 let redirectPage="dashboard.html";
@@ -1945,19 +1944,9 @@ const data=await response.json();
 
 if(data.success){
 
-sessionStorage.setItem("token", data.token);
-sessionStorage.setItem("loginTime", Date.now());
+localStorage.setItem("token", data.token);
+localStorage.setItem("loginTime", Date.now());
 
-// Auto logout after 2 minutes
-setTimeout(() => {
-
-    sessionStorage.clear();
-
-    alert("Session expired. Please login again.");
-
-    window.location.href = "index.html";
-
-}, 2 * 60 * 1000);
 
 document.getElementById("loginOverlay").style.display="none";
 
@@ -2122,10 +2111,10 @@ autoLogin();
 
 function goPage(page){
 
-    const token = sessionStorage.getItem("token");
-    const loginTime = Number(sessionStorage.getItem("loginTime"));
+    const token = localStorage.getItem("token");
+const loginTime = Number(localStorage.getItem("loginTime"));
 
-    const SESSION_TIME = 2 * 60 * 1000;
+const SESSION_TIME = 1 * 60 * 1000;
 
     if(!token || !loginTime){
 
@@ -2136,7 +2125,8 @@ function goPage(page){
 
     if(Date.now() - loginTime > SESSION_TIME){
 
-        sessionStorage.clear();
+        localStorage.removeItem("token");
+localStorage.removeItem("loginTime");
 
         openLogin(page);
 
