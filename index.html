@@ -1865,13 +1865,72 @@ overlay.style.display="block";
 
 <script>
 
-const SESSION_TIME = 5 * 60 * 1000; // 5 minutes
+const SESSION_TIME = 60 * 60 * 1000;
 
-const loginTime = Number(sessionStorage.getItem("loginTime"));
+const loginTime = Number(localStorage.getItem("loginTime"));
 
 if (loginTime && (Date.now() - loginTime) > SESSION_TIME) {
 
-    sessionStorage.clear();
+    localStorage.removeItem("token");
+localStorage.removeItem("loginTime");
+
+}
+
+const token = localStorage.getItem("token");
+
+if (
+    token &&
+    loginTime &&
+    Date.now() - loginTime < SESSION_TIME
+) {
+
+    document.getElementById("loginOverlay").style.display = "none";
+
+    document.getElementById("mainContent").style.display = "block";
+
+}else{
+
+    document.getElementById("loginOverlay").style.display="flex";
+
+}
+
+verifyToken();
+
+async function verifyToken(){
+
+    const token = localStorage.getItem("token");
+
+    if(!token) return;
+
+    try{
+
+        const response = await fetch("/api/verify",{
+            headers:{
+                Authorization:"Bearer " + token
+            }
+        });
+
+        const data = await response.json();
+
+        if(!response.ok || !data.success){
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("loginTime");
+
+            document.getElementById("loginOverlay").style.display="flex";
+            document.getElementById("mainContent").style.display="none";
+
+        }
+
+    }catch(e){
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("loginTime");
+
+        document.getElementById("loginOverlay").style.display="flex";
+        document.getElementById("mainContent").style.display="none";
+
+    }
 
 }
 
@@ -1945,22 +2004,10 @@ const data=await response.json();
 
 if(data.success){
 
-sessionStorage.setItem("token", data.token);
-sessionStorage.setItem("loginTime", Date.now());
-
-// Auto logout after 2 minutes
-setTimeout(() => {
-
-    sessionStorage.clear();
-
-    alert("Session expired. Please login again.");
-
-    window.location.href = "index.html";
-
-}, 2 * 60 * 1000);
+localStorage.setItem("token", data.token);
+localStorage.setItem("loginTime", Date.now());
 
 document.getElementById("loginOverlay").style.display="none";
-
 document.getElementById("mainContent").style.display="block";
 
 
@@ -2025,10 +2072,10 @@ document.getElementById("copyDeviceBtn").addEventListener("click", async () => {
 
 function goPage(page){
 
-    const token = sessionStorage.getItem("token");
-    const loginTime = Number(sessionStorage.getItem("loginTime"));
+    const token = localStorage.getItem("token");
+const loginTime = Number(localStorage.getItem("loginTime"));
 
-    const SESSION_TIME = 2 * 60 * 1000;
+const SESSION_TIME = 60 * 60 * 1000;
 
     if(!token || !loginTime){
 
@@ -2039,7 +2086,8 @@ function goPage(page){
 
     if(Date.now() - loginTime > SESSION_TIME){
 
-        sessionStorage.clear();
+        localStorage.removeItem("token");
+localStorage.removeItem("loginTime");
 
         openLogin(page);
 
