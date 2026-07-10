@@ -1186,6 +1186,574 @@ color:gold;
 
 }
 
+/* ===============================
+   ELEVATE PREMIUM UI
+================================ */
+
+:root{
+
+--bg:#09090f;
+
+--card:#11131b;
+
+--card2:#181b25;
+
+--purple:#7C4DFF;
+
+--purple2:#9C6BFF;
+
+--text:#ffffff;
+
+--sub:#9aa3b2;
+
+--green:#00E676;
+
+--red:#FF4D6D;
+
+}
+
+body{
+
+background:linear-gradient(180deg,#08080d,#101320);
+
+color:var(--text);
+
+}
+
+.app{
+
+max-width:520px;
+
+margin:auto;
+
+padding:20px;
+
+padding-bottom:100px;
+
+}
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.left{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logoCircle{
+
+width:58px;
+
+height:58px;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#6F3CFF,#A855F7);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+box-shadow:0 0 30px rgba(124,77,255,.4);
+
+}
+
+.left h2{
+
+font-size:21px;
+
+font-weight:800;
+
+}
+
+.left p{
+
+color:var(--sub);
+
+font-size:13px;
+
+margin-top:4px;
+
+}
+
+.right{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.liveBadge{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:10px 16px;
+
+background:#151822;
+
+border-radius:30px;
+
+font-weight:700;
+
+color:#00ff99;
+
+}
+
+.dot{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#00ff99;
+
+animation:pulse 1.2s infinite;
+
+}
+
+.profileBtn{
+
+width:48px;
+
+height:48px;
+
+border-radius:16px;
+
+background:#1a1d28;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:22px;
+
+}
+
+.glassCard{
+
+margin-top:20px;
+
+background:rgba(20,23,35,.95);
+
+border:1px solid rgba(124,77,255,.2);
+
+border-radius:26px;
+
+padding:22px;
+
+box-shadow:0 12px 35px rgba(0,0,0,.35);
+
+}
+
+.cardTitle{
+
+font-size:18px;
+
+font-weight:700;
+
+margin-bottom:18px;
+
+}
+
+.inputGroup{
+
+margin-bottom:18px;
+
+}
+
+.inputGroup label{
+
+display:block;
+
+margin-bottom:8px;
+
+color:var(--sub);
+
+}
+
+.inputGroup select{
+
+width:100%;
+
+height:56px;
+
+background:#1c2130;
+
+border:none;
+
+border-radius:16px;
+
+padding:0 18px;
+
+color:white;
+
+font-size:15px;
+
+}
+
+.generateBtn{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#6F3CFF,#9C6BFF);
+
+color:white;
+
+font-size:18px;
+
+font-weight:700;
+
+cursor:pointer;
+
+box-shadow:0 10px 30px rgba(124,77,255,.45);
+
+}
+
+.generateBtn:hover{
+
+transform:translateY(-2px);
+
+}
+
+.marketGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.marketItem{
+
+background:#191d29;
+
+border-radius:18px;
+
+padding:18px;
+
+text-align:center;
+
+}
+
+.marketItem p{
+
+font-size:13px;
+
+color:var(--sub);
+
+margin-bottom:8px;
+
+}
+
+.marketItem h2{
+
+font-size:22px;
+
+font-weight:800;
+
+}
+
+.analysisRow{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:15px;
+
+}
+
+.analysisRow span{
+
+color:var(--sub);
+
+}
+
+.progress{
+
+height:10px;
+
+background:#202534;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:8px;
+
+}
+
+.progress div{
+
+height:100%;
+
+background:linear-gradient(90deg,#6F3CFF,#A855F7);
+
+border-radius:20px;
+
+}
+
+.signalHeader{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.signalHeader h3{
+
+font-size:22px;
+
+}
+
+.signalHeader p{
+
+color:var(--sub);
+
+}
+
+.confidenceCircle{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#6F3CFF,#A855F7);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:800;
+
+font-size:18px;
+
+}
+
+.bigSignal{
+
+height:120px;
+
+border-radius:22px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:54px;
+
+font-weight:900;
+
+background:#191d29;
+
+margin-bottom:20px;
+
+}
+
+.signalGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:14px;
+
+}
+
+.infoCard{
+
+background:#191d29;
+
+padding:16px;
+
+border-radius:16px;
+
+text-align:center;
+
+}
+
+.infoCard p{
+
+color:var(--sub);
+
+font-size:13px;
+
+}
+
+.infoCard h3{
+
+margin-top:8px;
+
+font-size:20px;
+
+}
+
+.reasonCard{
+
+margin-top:20px;
+
+background:#191d29;
+
+padding:18px;
+
+border-radius:18px;
+
+}
+
+.reasonCard h4{
+
+margin-bottom:15px;
+
+}
+
+.reasonCard li{
+
+list-style:none;
+
+padding:7px 0;
+
+color:#d5d8df;
+
+}
+
+.copyBtn{
+
+width:100%;
+
+height:56px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:16px;
+
+background:#6F3CFF;
+
+color:white;
+
+font-weight:700;
+
+font-size:16px;
+
+}
+
+.statsGrid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+margin-top:22px;
+
+}
+
+.statBox{
+
+background:#191d29;
+
+border-radius:20px;
+
+padding:22px;
+
+text-align:center;
+
+}
+
+.statBox h2{
+
+font-size:34px;
+
+color:#9C6BFF;
+
+}
+
+.statBox p{
+
+margin-top:8px;
+
+color:var(--sub);
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(.9);
+
+opacity:.5;
+
+}
+
+50%{
+
+transform:scale(1.15);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(.9);
+
+opacity:.5;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -1282,25 +1850,323 @@ ELEVATE
 
 <body>
 
-<script src="../js/auth.js"></script>
+<div class="app">
 
-<div id="dashboardPage" class="page active">
+<!-- ========= HEADER ========= -->
 
-<div class="wrapper">
+<header class="header">
 
-<h2>
+<div class="left">
 
-Welcome Back 👋, Trader
+<div class="logoCircle">
+🟣
+</div>
 
-</h2>
+<div>
 
-<p style="text-align:center;color:#aaa;">
+<h2>Elevate Trading</h2>
 
-Elevate Your Trading System
+<p>AI Premium Dashboard</p>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="liveBadge">
+
+<span class="dot"></span>
+
+LIVE
+
+</div>
+
+<div class="profileBtn">
+
+👤
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ========= SERVER STATUS ========= -->
+
+<section class="statusGrid">
+
+<div class="statusCard">
+
+<div class="statusIcon">🟢</div>
+
+<div>
+
+<h4>Live Server</h4>
+
+<p id="serverStatus">Connected</p>
+
+</div>
+
+</div>
+
+<div class="statusCard">
+
+<div class="statusIcon">🕒</div>
+
+<div>
+
+<h4>Market Time</h4>
+
+<p id="marketClock">00:00:00</p>
+
+</div>
+
+</div>
+
+<div class="statusCard">
+
+<div class="statusIcon">📈</div>
+
+<div>
+
+<h4>Market</h4>
+
+<p id="marketState">
+
+OPEN
 
 </p>
 
 </div>
+
+</div>
+
+</section>
+
+<!-- ========= TRADING CONTROL ========= -->
+
+<section class="glassCard">
+
+<div class="cardTitle">
+
+⚡ Trading Control
+
+</div>
+
+<div class="inputGroup">
+
+<label>Broker</label>
+
+<select id="broker">
+
+<option>Quotex</option>
+
+<option>Binomo</option>
+
+<option>Pocket Option</option>
+
+</select>
+
+</div>
+
+<div class="inputGroup">
+
+<label>Market</label>
+
+<select id="market">
+
+<option>EURUSD</option>
+
+<option>GBPUSD</option>
+
+<option>GBPJPY</option>
+
+<option>USDJPY</option>
+
+<option>XAUUSD</option>
+
+</select>
+
+</div>
+
+<div class="inputGroup">
+
+<label>Timeframe</label>
+
+<select id="timeframe">
+
+<option value="1">1 Minute</option>
+
+<option value="2">2 Minute</option>
+
+<option value="5">5 Minute</option>
+
+<option value="15">15 Minute</option>
+
+</select>
+
+</div>
+
+<button id="generateBtn" class="generateBtn">
+
+✨ Generate AI Signal
+
+</button>
+
+</section>
+
+<!-- ========= LIVE MARKET ========= -->
+
+<section class="glassCard">
+
+<div class="cardTitle">
+
+📈 Live Market
+
+</div>
+
+<div class="marketGrid">
+
+<div class="marketItem">
+
+<p>Current Price</p>
+
+<h2 id="livePrice">
+
+1.08452
+
+</h2>
+
+</div>
+
+<div class="marketItem">
+
+<p>Spread</p>
+
+<h2 id="spread">
+
+0.8 Pip
+
+</h2>
+
+</div>
+
+<div class="marketItem">
+
+<p>Volatility</p>
+
+<h2 id="volatility">
+
+Medium
+
+</h2>
+
+</div>
+
+<div class="marketItem">
+
+<p>Trend</p>
+
+<h2 id="trend">
+
+📈 Bullish
+
+</h2>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========= AI ANALYSIS ========= -->
+
+<section class="glassCard">
+
+<div class="cardTitle">
+
+🧠 AI Analysis
+
+</div>
+
+<div class="analysisBox">
+
+<div class="analysisRow">
+
+<span>Trend Strength</span>
+
+<b id="trendStrength">
+
+87%
+
+</b>
+
+</div>
+
+<div class="progress">
+
+<div id="trendBar" style="width:87%"></div>
+
+</div>
+
+<div class="analysisRow">
+
+<span>Historical Match</span>
+
+<b id="historyMatch">
+
+92%
+
+</b>
+
+</div>
+
+<div class="progress">
+
+<div id="historyBar" style="width:92%"></div>
+
+</div>
+
+<div class="analysisRow">
+
+<span>Liquidity</span>
+
+<b id="liquidity">
+
+HIGH
+
+</b>
+
+</div>
+
+<div class="progress">
+
+<div id="liquidityBar" style="width:96%"></div>
+
+</div>
+
+<div class="analysisRow">
+
+<span>Confidence</span>
+
+<b id="confidence">
+
+95%
+
+</b>
+
+</div>
+
+<div class="progress">
+
+<div id="confidenceBar" style="width:95%"></div>
+
+</div>
+
+</div>
+
+</section>
 
 <div class="panel">
 
@@ -1377,23 +2243,197 @@ Elevate Your Trading System
 
 </div>
 
-<div class="signal-card">
+<!-- ========= AI SIGNAL ========= -->
 
-    <div class="signal-title">
-        CURRENT SIGNAL
-    </div>
+<section class="glassCard signalCard">
 
-    <div id="signalBox" class="signal-box">
-        WAIT
-    </div>
+<div class="signalHeader">
 
-    <div id="signalInfo" class="signal-info">
+<div>
 
-           Status : SAFE
+<h3>
 
-    </div>
+🧠 AI SIGNAL
+
+</h3>
+
+<p>
+
+Historical Pattern Engine
+
+</p>
 
 </div>
+
+<div class="confidenceCircle">
+
+<span id="confidenceValue">
+
+95%
+
+</span>
+
+</div>
+
+</div>
+
+<div id="signalBox" class="bigSignal">
+
+WAIT
+
+</div>
+
+<div class="signalGrid">
+
+<div class="infoCard">
+
+<p>Pair</p>
+
+<h3 id="pairName">
+
+EURUSD
+
+</h3>
+
+</div>
+
+<div class="infoCard">
+
+<p>Confidence</p>
+
+<h3 id="signalConfidence">
+
+95%
+
+</h3>
+
+</div>
+
+<div class="infoCard">
+
+<p>Entry</p>
+
+<h3 id="entryTime">
+
+--
+
+</h3>
+
+</div>
+
+<div class="infoCard">
+
+<p>Expiry</p>
+
+<h3 id="expiryTime">
+
+--
+
+</h3>
+
+</div>
+
+</div>
+
+<div class="reasonCard">
+
+<h4>
+
+AI Confirmation
+
+</h4>
+
+<ul id="signalReasons">
+
+<li>✔ Historical Pattern</li>
+
+<li>✔ EMA Trend</li>
+
+<li>✔ Liquidity Sweep</li>
+
+<li>✔ Market Structure</li>
+
+<li>✔ RSI Confirmation</li>
+
+</ul>
+
+</div>
+
+<button class="copyBtn" id="copySignal">
+
+📋 Copy Signal
+
+</button>
+
+</section>
+
+<section class="statsGrid">
+
+<div class="statBox">
+
+<h2 id="todaySignals">
+
+0
+
+</h2>
+
+<p>
+
+Today's Signals
+
+</p>
+
+</div>
+
+<div class="statBox">
+
+<h2 id="todayWins">
+
+0
+
+</h2>
+
+<p>
+
+Wins
+
+</p>
+
+</div>
+
+<div class="statBox">
+
+<h2 id="todayLoss">
+
+0
+
+</h2>
+
+<p>
+
+Losses
+
+</p>
+
+</div>
+
+<div class="statBox">
+
+<h2 id="winRate">
+
+0%
+
+</h2>
+
+<p>
+
+Win Rate
+
+</p>
+
+</div>
+
+</section>
 
 </div>
 </div>
@@ -1560,92 +2600,151 @@ function displaySignal(data){
 
     if(!data.success){
 
-        signalBox.className="signal-box";
-        signalBox.innerHTML="NO SIGNAL";
-        signalInfo.innerHTML=data.message;
+        document.getElementById("signalBox").innerHTML="NO SIGNAL";
+
+        document.getElementById("signalBox").style.background="#2A2D3A";
+
+        document.getElementById("signalBox").style.color="#fff";
+
+        document.getElementById("pairName").innerHTML="--";
+
+        document.getElementById("signalConfidence").innerHTML="0%";
+
+        document.getElementById("confidenceValue").innerHTML="0%";
+
+        document.getElementById("entryTime").innerHTML="--";
+
+        document.getElementById("expiryTime").innerHTML="--";
+
+        document.getElementById("signalReasons").innerHTML=`
+        <li>❌ ${data.message}</li>
+        `;
 
         btn.disabled=false;
-        btn.innerHTML="GENERATE SIGNAL";
+        btn.innerHTML="✨ Generate AI Signal";
         signalRunning=false;
 
         return;
+
     }
 
-    signalBox.className="signal-box";
+    // ===== Signal =====
+
+    document.getElementById("signalBox").innerHTML=data.signal;
 
     if(data.signal==="CALL"){
-        signalBox.classList.add("call");
+
+        document.getElementById("signalBox").style.background=
+        "linear-gradient(135deg,#00C853,#00E676)";
+
     }else{
-        signalBox.classList.add("put");
+
+        document.getElementById("signalBox").style.background=
+        "linear-gradient(135deg,#D50000,#FF5252)";
+
     }
 
-    signalBox.innerHTML=data.signal;
+    document.getElementById("signalBox").style.color="white";
 
-    signalInfo.innerHTML=`
+    // ===== Main =====
 
-<b>Pair :</b> ${data.pair}<br>
+    document.getElementById("pairName").innerHTML=data.pair;
 
-<b>Confidence :</b> ${data.confidence}% (${data.confidenceLabel})<br>
+    document.getElementById("signalConfidence").innerHTML=data.confidence+"%";
 
-<b>Trend :</b> ${data.trend}<br>
+    document.getElementById("confidenceValue").innerHTML=data.confidence+"%";
 
-<b>Historical Matches :</b> ${data.matches}<br>
+    document.getElementById("entryTime").innerHTML=data.entry;
 
-<b>Historical Win Rate :</b> ${data.historicalWinRate}%<br>
+    document.getElementById("expiryTime").innerHTML=data.expiry;
 
-<b>Entry :</b> ${data.entry}<br>
+    // ===== Live Market =====
 
-<b>Expiry :</b> ${data.expiry}<br>
+    if(data.entryPrice){
 
-<b>HH :</b> ${data.marketStructure.hh}
-&nbsp;&nbsp;
-<b>HL :</b> ${data.marketStructure.hl}<br>
+        document.getElementById("livePrice").innerHTML=
+        Number(data.entryPrice).toFixed(5);
 
-<b>LH :</b> ${data.marketStructure.lh}
-&nbsp;&nbsp;
-<b>LL :</b> ${data.marketStructure.ll}<br>
+    }
 
-<b>BOS :</b>
-${data.bos.bullish ? "Bullish" : data.bos.bearish ? "Bearish" : "None"}<br>
+    document.getElementById("trend").innerHTML=data.trend;
 
-<b>CHoCH :</b>
-${data.choch.direction}<br>
+    document.getElementById("confidence").innerHTML=
+    data.confidence+"%";
 
-<b>Liquidity Sweep :</b>
-${data.liquiditySweep.bullish ? "Bullish" :
-data.liquiditySweep.bearish ? "Bearish" : "None"}<br>
+    document.getElementById("confidenceBar").style.width=
+    data.confidence+"%";
 
-<b>Support :</b> ${data.supportResistance.support ? "YES" : "NO"}<br>
+    document.getElementById("historyMatch").innerHTML=
+    data.historicalWinRate+"%";
 
-<b>Resistance :</b> ${data.supportResistance.resistance ? "YES" : "NO"}<br>
+    document.getElementById("historyBar").style.width=
+    data.historicalWinRate+"%";
 
-<b>Trend Continuation :</b> ${data.trendContinuation}<br>
+    // ===== Trend Strength =====
 
-<b>Candle Cluster :</b> ${data.clusterDirection}<br>
+    const strength=Math.min(100,data.confidence);
 
-<b>Tick Pressure :</b> ${data.tickPressure}<br>
+    document.getElementById("trendStrength").innerHTML=
+    strength+"%";
 
-<b>Volatility :</b> ${data.volatility}<br>
+    document.getElementById("trendBar").style.width=
+    strength+"%";
 
-<b>Analysis Hour :</b> ${data.analysisTime}:00
+    // ===== Liquidity =====
+
+    document.getElementById("liquidity").innerHTML=
+    data.liquiditySweep.bullish ||
+    data.liquiditySweep.bearish
+    ?"HIGH":"NORMAL";
+
+    document.getElementById("liquidityBar").style.width=
+    data.liquiditySweep.bullish ||
+    data.liquiditySweep.bearish
+    ?"95%":"60%";
+
+    // ===== AI Reasons =====
+
+    document.getElementById("signalReasons").innerHTML=`
+
+<li>✔ Historical Pattern</li>
+
+<li>✔ ${data.trend}</li>
+
+<li>✔ ${data.clusterDirection}</li>
+
+<li>✔ ${data.tickPressure}</li>
+
+<li>✔ ${data.volatility}</li>
 
 `;
+
+    // ===== Save =====
 
     saveSignal({
 
         pair:data.pair,
+
         signal:data.signal,
+
         confidence:data.confidence,
+
         entry:data.entry,
+
         expiry:data.expiry,
+
         entryPrice:data.entryPrice,
+
         result:"PENDING",
+
         time:new Date().toLocaleString()
 
     });
 
     btn.disabled=false;
-    btn.innerHTML="GENERATE SIGNAL";
+
+    btn.innerHTML="✨ Generate AI Signal";
+
     signalRunning=false;
 
 }
