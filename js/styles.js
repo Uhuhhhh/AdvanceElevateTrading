@@ -1,25 +1,49 @@
-(() => {
-    const token = sessionStorage.getItem("token");
+(async () => {
 
-    if (!token) {
-        window.location.replace("../index.html"); // Change path if needed
+    const token = localStorage.getItem("token");
+    const loginTime = Number(localStorage.getItem("loginTime"));
+
+    const SESSION_TIME = 60 * 60 * 1000; // 1 hour
+
+    if (
+        !token ||
+        !loginTime ||
+        (Date.now() - loginTime) > SESSION_TIME
+    ) {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("loginTime");
+
+        window.location.replace("../index.html");
         return;
+
     }
 
-    fetch("/api/verify", {
-        headers: {
-            Authorization: "Bearer " + token
+    try {
+
+        const response = await fetch("/api/verify", {
+
+            headers: {
+                Authorization: "Bearer " + token
+            }
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+
+            throw new Error("Invalid session");
+
         }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (!data.success) {
-            sessionStorage.clear();
-            window.location.replace("../index.html");
-        }
-    })
-    .catch(() => {
-        sessionStorage.clear();
+
+    } catch (err) {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("loginTime");
+
         window.location.replace("../index.html");
-    });
+
+    }
+
 })();
