@@ -2319,13 +2319,19 @@ async function generateSignal(){
 
     const token = localStorage.getItem("token");
 
-    if(!token){
-        location.href="index.html";
-        return;
-    }
+alert("Token = " + token);
 
-    generateBtn.disabled=true;
-    generateBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> ANALYZING';
+    generateBtn.disabled = true;
+
+if(heroBtn){
+    heroBtn.disabled = true;
+}
+
+generateBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> ANALYZING';
+
+if(heroBtn){
+    heroBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> ANALYZING';
+}
 
     try{
 
@@ -2363,8 +2369,17 @@ async function generateSignal(){
 
     }
 
-    generateBtn.disabled=false;
-    generateBtn.innerHTML='<i class="fas fa-bolt"></i> GENERATE SIGNAL';
+    generateBtn.disabled = false;
+
+if(heroBtn){
+    heroBtn.disabled = false;
+}
+
+generateBtn.innerHTML='<i class="fas fa-bolt"></i> GENERATE SIGNAL';
+
+if(heroBtn){
+    heroBtn.innerHTML='<i class="fas fa-bolt"></i> GENERATE SIGNAL';
+}
 
 }
 
@@ -2459,19 +2474,8 @@ setTimeout(()=>{
 </script>
 
 <div id="toast" class="toast">
-
 Signal Generated
-
 </div>
 
 </body>
-
-</html>
-
-Signal Generated
-
-</div>
-
-</body>
-
 </html>
