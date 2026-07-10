@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
+const { db } = require("../lib/firebaseAdmin");
 
-module.exports = function(req,res){
+module.exports = async function(req,res){
 
     const token =
     req.headers.authorization?.replace("Bearer ","");
@@ -16,25 +17,58 @@ module.exports = function(req,res){
 
     try{
 
-        const decoded =
-        jwt.verify(
+        const decoded = jwt.verify(
             token,
             process.env.JWT_SECRET
         );
 
+        // Check Firestore
+        const doc = await db
+            .collection("users")
+            .doc(decoded.uid)
+            .get();
+
+        if(!doc.exists){
+
+            return res.status(401).json({
+                success:false,
+                message:"User deleted"
+            });
+
+        }
+
+        const user = doc.data();
+
+        // Disabled account
+        if(
+            user.enabled===false ||
+            user.enabled==="false"
+        ){
+
+            return res.status(401).json({
+                success:false,
+                message:"Account disabled"
+            });
+
+        }
+
         return res.status(200).json({
 
-    success: true,
+            success:true,
 
-    premium: decoded.premium || false,
+            premium:user.premium===true ||
+                     user.premium==="true",
 
-    key: decoded.key || "",
+            key:user.key||"",
 
-    expiry: decoded.expiry || "Unlimited",
+            expiry:user.expiry||"Unlimited",
 
-    user: decoded
+            user:{
+                uid:decoded.uid,
+                email:user.email||""
+            }
 
-});
+        });
 
     }catch(e){
 
